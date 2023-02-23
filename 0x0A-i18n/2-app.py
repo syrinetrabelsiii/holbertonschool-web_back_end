@@ -1,20 +1,28 @@
 #!/usr/bin/env python3
 """
-Get locale from request
+Welcome to Holberton
 """
-from flask import Flask, render_template, request
+from flask import Flask, render_template, g, request
 from flask_babel import Babel
-from babel import negotiate_locale
-
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__)
 babel = Babel(app)
 
 
 class Config(object):
-    """Config Class"""
+    """
+    language config
+    """
     LANGUAGES = ["en", "fr"]
-    BABEL_DEFAULT_LOCALE = "en"
-    BABEL_DEFAULT_TIMEZONE = "UTC"
+    BABEL_DEFAULT_LOCALE = 'en'
+    BABEL_DEFAULT_TIMEZONE = 'UTC'
+
+
+@babel.localeselector
+def get_locale():
+    """
+     the best match with our supported languages.
+    """
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 app.config.from_object(Config)
@@ -26,17 +34,3 @@ def helloWorld():
     Hello world
     """
     return render_template('2-index.html')
-
-
-@babel.localeselector
-def get_locale():
-    """
-    Returns the best matched locale
-    """
-    return negotiate_locale('LANGUAGES',
-                            request.accept_languages.best_match(
-                                app.config['LANGUAGES']))
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
