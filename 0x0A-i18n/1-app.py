@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Welcome to Holberton
+Welcome Holberton
 """
 from flask import Flask, render_template
 from flask_babel import Babel
@@ -10,15 +10,19 @@ babel = Babel(app)
 
 class Config(object):
     """
-    languages, locale, timezone
+    languages config
     """
-    LANGUAGES = ['en', 'fr']
+    LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
+
+
+app.config.from_object(Config)
+
 
 @app.route("/", methods=['GET'])
 def helloWorld():
     """
     Hello world
     """
-    return render_template('0-index.html')
+    return render_template('1-index.html')
