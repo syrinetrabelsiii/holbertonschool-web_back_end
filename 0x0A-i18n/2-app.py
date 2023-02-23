@@ -15,17 +15,18 @@ class Config(object):
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
+    
+app.config.from_object(Config)
+babel = Babel(app)
 
 
 @babel.localeselector
 def get_locale():
     """
-     the best match with our supported languages.
+     Return best match from accepted languages
     """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
-
-app.config.from_object(Config)
 
 
 @app.route("/", methods=['GET'])
