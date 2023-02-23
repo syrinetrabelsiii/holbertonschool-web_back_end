@@ -1,45 +1,42 @@
 #!/usr/bin/env python3
 """
-Welcome to Holberton
+Get locale from request
 """
-
 from flask import Flask, render_template, request
 from flask_babel import Babel
-from typing import Optional
-import os
+from babel import negotiate_locale
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
+babel = Babel(app)
 
 
-class Config:
-    """
-    Configuration of Babel
-    """
+class Config(object):
+    """Config Class"""
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
 
 
 app.config.from_object(Config)
-babel = Babel(app)
+
+
+@app.route("/", methods=['GET'])
+def helloWorld():
+    """
+    Hello world
+    """
+    return render_template('2-index.html')
 
 
 @babel.localeselector
-def get_locale() -> Optional[str]:
+def get_locale():
     """
-    Return best match from accepted languages
+    Returns the best matched locale
     """
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    return negotiate_locale('LANGUAGES',
+                            request.accept_languages.best_match(
+                                app.config['LANGUAGES']))
 
 
-@app.route("/", methods=["GET"], strict_slashes=False)
-def home() -> str:
-    """
-    Home page
-    """
-
-    return render_template("2-index.html")
-
-
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000)
+if __name__ == '__main__':
+    app.run(debug=True)
