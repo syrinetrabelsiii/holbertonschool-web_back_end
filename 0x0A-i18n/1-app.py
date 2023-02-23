@@ -13,9 +13,8 @@ class Config(object):
     languages, locale, timezone
     """
     LANGUAGES = ['en', 'fr']
-    Babel_default_locale = 'en'
-    Babel_default_timezone = 'UTC'
-
+    BABEL_DEFAULT_LOCALE = 'en'
+    BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 @app.route("/", methods=['GET'])
 def helloWorld():
