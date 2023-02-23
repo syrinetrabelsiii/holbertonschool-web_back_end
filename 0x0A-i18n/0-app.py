@@ -8,13 +8,6 @@ app = Flask(__name__)
 babel = Babel(app)
 
 
-class Config(object):
-    """
-    language config
-    """
-    LANGUAGES = ['en', 'es']
-
-
 @app.route("/", methods=['GET'])
 def helloWorld():
     """
