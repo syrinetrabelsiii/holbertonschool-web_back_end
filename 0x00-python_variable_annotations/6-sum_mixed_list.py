@@ -2,8 +2,8 @@
 """sumary_line
 
 Keyword arguments:
-argument -- description
-Return: return_description
+argument -- int float
+Return: sum
 """
 
 from typing import List, Union
@@ -12,9 +12,9 @@ def sum_mixed_list (mxd_lst: List[Union[int, float]]) -> float:
     """_summary_
 
     Args:
-        mxd_lst (List): _description_
+        mxd_lst (List): mixed list 
 
     Returns:
-        float: _description_
+        sum
     """
     return sum(mxd_lst)
