@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-     type-annotated function mxd_list
+type-annotated function mxd_list
 """
 from typing import List, Union
 
