@@ -12,4 +12,4 @@ def task_wait_random(max_delay: int) -> asyncio.Task:
     returns a asyncio.task.
     """
 
-    return asyncio.Task(coro)
+    return asyncio.Task()
