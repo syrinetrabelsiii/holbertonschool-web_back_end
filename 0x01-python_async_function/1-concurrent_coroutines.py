@@ -14,4 +14,4 @@ async def wait_n(n: int, max_delay: int) -> typing.List[float]:
     realpython documention
     """
     x = await asyncio.gather(*[wait_random(max_delay) for y in range(n)])
-    return (x)
+    return sorted(x)
