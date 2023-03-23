@@ -1,11 +1,10 @@
-import Currency  from './3-currency';
 export default class Pricing {
-    constructor (amount, currency){
-        if (typeof (currency) === 'object') { this._currency = currency; }
-    if (typeof (amount) === 'number') { this._amount = amount;}
-    }
+  constructor(amount, currency) {
+    if (typeof (currency) === 'object') { this._currency = currency; }
+    if (typeof (amount) === 'number') { this._amount = amount; }
+  }
 
-static convertPrice(amount, conversionRate) {
+  static convertPrice(amount, conversionRate) {
     return amount * conversionRate;
   }
 
