@@ -48,6 +48,8 @@ def replay(fn: Callable):
     for inp, out in merge_list:
         argument, data = inp.decode("utf-8"), out.decode("utf-8")
         print(f"{value}(*{argument}) -> {data}")
+
+
 class Cache:
     """ Class: Cache"""
     def __init__(self):
@@ -73,7 +75,16 @@ class Cache:
         if fn:
             return fn(data)
         return data
+
     def get_str(self, key: str) -> str:
         """Method: Return Get Str in data"""
         data = self._redis.get(key)
         return data.decode("utf-8")
+
+    def get_int(self, key: str) -> int:
+        """Method: Return Get Int in data"""
+        data = self._redis.get(key)
+        try:
+            return int(data.decode("utf-8"))
+        except Exception:
+            return 0
