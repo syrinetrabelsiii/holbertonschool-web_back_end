@@ -73,3 +73,7 @@ class Cache:
         if fn:
             return fn(data)
         return data
+    def get_str(self, key: str) -> str:
+        """Method: Return Get Str in data"""
+        data = self._redis.get(key)
+        return data.decode("utf-8")
