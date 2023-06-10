@@ -3,7 +3,7 @@
     to use redis as a simple cache"""
 import redis
 import uuid
-from typing import Union, Callable
+from typing import Union, Callable, Optional
 from functools import wraps
 
 
@@ -65,3 +65,11 @@ class Cache:
         self._redis.set(mykey, data)
         return mykey
 
+    def get(self, key: str,
+            fn: Optional[Callable] = None) -> Union[str, bytes, int, float]:
+        """Method: This callable will be used to convert the data
+        back to the desired format."""
+        data = self._redis.get(key)
+        if fn:
+            return fn(data)
+        return data
