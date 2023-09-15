@@ -6,7 +6,7 @@
 
 def index_range(page: int, page_size: int) -> tuple:
     """
-    a function that
+    a function that index
     """
     return ((page * page_size - page_size), (page * page_size))
 
