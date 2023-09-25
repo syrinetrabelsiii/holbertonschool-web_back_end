@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
+"""Simple pagination
+"""
+import csv
+import math
+from typing import List, Tuple
 
-"""pagination"""
 
 class Server:
     """Server class to paginate a database of popular baby names.
@@ -34,16 +38,20 @@ class Server:
         for _ in range(page - 1):
             start += page_size
         return (start, end)
+
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        pass
-        assert isinstance(page, int) and page > 0
-        assert isinstance(page_size, int) and page_size > 0
-        dataset=self.dataset()
+        """get page
+        Args:
+            page (int, optional): number of page. Defaults to 1.
+            page_size (int, optional): number of row in page. Defaults to 10.
+        Returns:
+            List[List]: List of dataset rows by range
+        """
+        assert type(page) is int and type(page_size) is int
+        assert page > 0 and page_size > 0
+        dataset = self.dataset()
         start, end = self.index_range(page, page_size)
-        if end >len(dataset):
-            return[]
-            return self.data[start:end]
-
-
-
+        if end > len(dataset):
+            return []
+        return [list(dataset[row]) for row in range(start, end)]
 
