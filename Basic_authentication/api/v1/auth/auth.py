@@ -44,4 +44,3 @@ class Auth():
         current_user function
         """
         return None
-
