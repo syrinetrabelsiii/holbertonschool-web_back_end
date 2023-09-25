@@ -42,4 +42,3 @@ def forbidden() -> str:
       - raises an error
     """
     abort(403, description='Forbidden')
-
