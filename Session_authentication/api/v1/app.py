@@ -39,5 +39,3 @@ def forbidden(error) -> str:
     """ Forbidden handler
     """
     return jsonify({"error": "Forbidden"}), 403
-
-
